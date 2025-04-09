@@ -6,35 +6,34 @@ const Login = ({ setUser }) => {
   const [form, setForm] = useState({ username: '', password: '' });
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', form);
-      const { token } = res.data;
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, form);
+      const token = res.data.token;
       localStorage.setItem('token', token);
 
-      const profile = await axios.get('http://localhost:5000/api/auth/profile', {
+      const profile = await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/profile`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
       setUser(profile.data);
-      navigate('/dashboard');
+      navigate('/home');
     } catch (err) {
+      console.error(err);
       alert('Credenciales inválidas');
     }
   };
 
   return (
     <div className="p-4 max-w-md mx-auto">
-      <h2 className="text-xl font-bold mb-4">Iniciar Sesión</h2>
+      <h2 className="text-xl font-bold mb-4">Iniciar sesión</h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <input name="username" placeholder="Usuario" onChange={handleChange} className="border p-2" required />
-        <input name="password" type="password" placeholder="Contraseña" onChange={handleChange} className="border p-2" required />
-        <button className="bg-green-600 text-white p-2 rounded">Entrar</button>
+        <input name="username" placeholder="Usuario" onChange={handleChange} required />
+        <input name="password" type="password" placeholder="Contraseña" onChange={handleChange} required />
+        <button type="submit" className="bg-green-600 text-white py-2 rounded">Entrar</button>
       </form>
     </div>
   );
