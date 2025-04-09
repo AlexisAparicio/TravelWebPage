@@ -21,6 +21,7 @@ const SignUp = () => {
   };
 
   return (
+    
     <div className="p-4 max-w-md mx-auto">
       <h2 className="text-xl font-bold mb-4">Registro</h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">

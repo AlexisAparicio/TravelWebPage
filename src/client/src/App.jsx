@@ -14,6 +14,7 @@ function App() {
     if (token) {
       axios.get(`${import.meta.env.VITE_API_URL}/api/auth/profile`, {
         headers: { Authorization: `Bearer ${token}` }
+
       }).then(res => setUser(res.data)).catch(() => setUser(null));
     }
   }, []);
