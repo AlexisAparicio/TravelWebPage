@@ -1,14 +1,22 @@
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Sidebar from '../components/Sidebar';
+import Dashboard from './Dashboard';
 import Navbar from '../components/Navbar';
 
-const Home = ({ user, setUser }) => {
+const Reportes = () => <div className="ml-64 mt-16 p-8">📊 Reportes aquí</div>;
+const Estadisticas = () => <div className="ml-64 mt-16 p-8">📈 Estadísticas aquí</div>;
+
+const Home = ({ user }) => {
   return (
     <div>
-      <div className="bg-indigo-700 text-red p-4 rounded">
-        Tailwind funcionando con @tailwindcss/postcss 🎉
-      </div>
-      <Navbar user={user} setUser={setUser} />
-      <h1 className="text-2xl font-bold">Bienvenido al sistema, {user.username}</h1>
-      <p className="mt-2">Aquí va el contenido de tu página principal.</p>
+      <Sidebar />
+      <Navbar user={user} />
+      <Routes>
+        <Route path="/home/" element={<Navigate to="dashboard" />} />
+        <Route path="reportes" element={<Reportes />} />
+        <Route path="estadisticas" element={<Estadisticas />} />
+        <Route path="dashboard" element={<Dashboard />} />
+      </Routes>
     </div>
   );
 };

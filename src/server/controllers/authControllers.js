@@ -4,15 +4,22 @@ import jwt from 'jsonwebtoken';
 
 export const register = async (req, res) => {
   try {
-    const { username, password, role } = req.body;
+    const { username, password, role, departamento, rango, cliente } = req.body;
 
     const userExists = await User.findOne({ username });
-    if (userExists) {
-      return res.status(400).json({ message: 'El usuario ya existe' });
-    }
+    if (userExists) return res.status(400).json({ message: 'El usuario ya existe' });
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ username, password: hashedPassword, role });
+
+    const newUser = new User({
+      username,
+      password: hashedPassword,
+      role,
+      departamento,
+      rango,
+      cliente
+    });
+
     await newUser.save();
 
     res.status(201).json({ message: 'Usuario registrado correctamente' });

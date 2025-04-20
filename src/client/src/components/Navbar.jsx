@@ -5,16 +5,27 @@ const Navbar = ({ user, setUser }) => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    setUser(null);
+
+    if (typeof setUser === 'function') {
+      setUser(null);
+    }
+
     navigate('/login');
   };
 
   return (
-    <div className="fixed top-0 right-0 bg-gray-100 p-4 shadow-md h-full w-64 flex flex-col items-start">
-      <h2 className="font-semibold mb-4">👤 {user.username}</h2>
-      <p className="mb-4">Rol: {user.role}</p>
-      <button onClick={handleLogout} className="mt-auto bg-red-500 text-white px-4 py-2 rounded">Cerrar sesión</button>
-    </div>
+    <nav className="fixed top-0 left-0 w-full bg-gray-800 text-white px-6 py-3 flex justify-between items-center shadow z-10">
+      <span className="font-semibold text-lg">Global Mind-Solutions</span>
+      <div className="flex items-center gap-4">
+        <span>👤 {user?.username}</span>
+        <button
+          onClick={handleLogout}
+          className="cursor-pointer bg-red-500 hover:bg-red-900 text-white  px-3 py-1 rounded"
+        >
+          Cerrar sesión
+        </button>
+      </div>
+    </nav>
   );
 };
 

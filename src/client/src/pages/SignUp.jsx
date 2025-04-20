@@ -27,6 +27,9 @@ const SignUp = () => {
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input name="username" placeholder="Usuario" onChange={handleChange} required />
         <input name="password" type="password" placeholder="Contraseña" onChange={handleChange} required />
+        <input name="departamento" placeholder="Departamento" onChange={handleChange} required />
+        <input name="cliente" placeholder="Cliente" onChange={handleChange} required />
+        <input name="rango" placeholder="Rango" onChange={handleChange} required />
         <select name="role" onChange={handleChange}>
           <option value="user">Usuario</option>
           <option value="manager">Manager</option>
