@@ -28,8 +28,8 @@ const Login = ({ setUser }) => {
   };
 
   return (
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 border-2 border-gray-300 rounded-lg shadow-md">
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm ">
           <img
             alt="Global Mind-Solutions"
             src="../src/assets/gms_logo.jpg"
@@ -78,18 +78,7 @@ const Login = ({ setUser }) => {
           </form>
         </div>
       </div>
-    
 
-    // <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-    //   <h2 className="text-xl font-bold mb-4">Iniciar sesión</h2>
-    //   <div className='backdrop-blur-[4px] backdrop-saturate-[100%] bg-[#ffffff] bg-opacity-10border border-opacity-20 border-[#ffffff] rounded-lg shadow-lg p-8'>
-    //     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-    //       <input name="username" placeholder="Usuario" onChange={handleChange} required />
-    //       <input name="password" type="password" placeholder="Contraseña" onChange={handleChange} required />
-    //       <button type="submit" className="bg-green-600 text-white py-2 rounded hover:bg-sky-700">Entrar</button>
-    //     </form>
-    //   </div>
-    // </div>
   );
 };
 
